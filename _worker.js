@@ -4832,28 +4832,25 @@ function Clash订阅配置文件热补丁(Clash_原始订阅内容, config_JSON 
 
 	const baseDnsBlock = `dns:
   enable: true
+  ipv6: false
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - '+.lan'
+    - '+.local'
+    - '+.localdomain'
+    - '*.msftconnecttest.com'
+    - '*.msftncsi.com'
+    - 'localhost.ptlogin2.qq.com'
   default-nameserver:
     - 223.5.5.5
     - 119.29.29.29
-    - 114.114.114.114
-  use-hosts: true
   nameserver:
-    - https://sm2.doh.pub/dns-query
     - https://dns.alidns.com/dns-query
-  fallback:
-    - 8.8.4.4
-    - 208.67.220.220
+    - https://doh.pub/dns-query
+  fallback: []
   fallback-filter:
-    geoip: true
-    geoip-code: CN
-    ipcidr:
-      - 240.0.0.0/4
-      - 127.0.0.1/32
-      - 0.0.0.0/32
-    domain:
-      - '+.google.com'
-      - '+.facebook.com'
-      - '+.youtube.com'
+    geoip: false
 `;
 
 	const 添加InlineGrpcUserAgent = (text) => text.replace(/grpc-opts:\s*\{([\s\S]*?)\}/i, (all, inner) => {
